@@ -24,7 +24,7 @@
           <h6 class="text-muted">Tags: {{ task.get_tags }}</h6>
           <p class="mt-3">
             <a class="btn btn-sm btn-outline-dark" href="{% url 'tasks:task-update' task.id %}">Update</a>
-            <a class="btn btn-sm btn-outline-danger" href="">Delete</a>
+            <a class="btn btn-sm btn-outline-danger" href="{% url 'tasks:task-delete' task.id %}">Delete</a>
           </p>
         </div>
       </div>
