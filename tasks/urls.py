@@ -13,6 +13,8 @@ urlpatterns = [
 	path("tasks/create/", views.TaskCreateView.as_view(), name="create-task"),
 	path("tasks/<int:pk>/update", views.TaskUpdateView.as_view(), name="task-update"),
 	path("tasks/<int:pk>/delete", views.TaskDeleteView.as_view(), name="task-delete"),
+	path("tasks/<int:pk>/complete", views.task_complete, name="task-complete"),
+	path("tasks/<int:pk>/undo", views.task_undo, name="task-undo"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 app_name = "tasks"
