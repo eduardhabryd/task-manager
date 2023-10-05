@@ -4,7 +4,7 @@
 
 {% block content %}
   <h1 class="mt-5 w-50">TODO List
-    <a class="btn btn-primary float-end" href="">Add Task</a>
+    <a class="btn btn-primary float-end" href="{% url 'tasks:create-task' %}">Add Task</a>
   </h1>
   <hr class="w-50">
   {% if task_list %}
@@ -23,7 +23,7 @@
           <p class="text-muted">Created: {{ task.datetime }} <span class="text-danger">Dealine: {{ task.deadline }}</span></p>
           <h6 class="text-muted">Tags: {{ task.get_tags }}</h6>
           <p class="mt-3">
-            <a class="btn btn-sm btn-outline-dark" href="">Update</a>
+            <a class="btn btn-sm btn-outline-dark" href="{% url 'tasks:task-update' task.id %}">Update</a>
             <a class="btn btn-sm btn-outline-danger" href="">Delete</a>
           </p>
         </div>
