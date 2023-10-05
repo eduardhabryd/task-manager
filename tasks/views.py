@@ -23,6 +23,11 @@ class TaskUpdateView(generic.UpdateView):
 	success_url = reverse_lazy("tasks:index")
 
 
+class TaskDeleteView(generic.DeleteView):
+	model = Task
+	success_url = reverse_lazy("tasks:index")
+	template_name = "tasks/task_confirm_delete.html"
+
 class TagListView(generic.ListView):
 	model = Tag
 
@@ -36,4 +41,9 @@ class TagCreateView(generic.CreateView):
 class TagUpdateView(generic.UpdateView):
 	model = Tag
 	fields = "__all__"
+	success_url = reverse_lazy("tasks:tags")
+
+
+class TagDeleteView(generic.DeleteView):
+	model = Tag
 	success_url = reverse_lazy("tasks:tags")
