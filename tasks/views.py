@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views import generic
 
@@ -27,6 +27,21 @@ class TaskDeleteView(generic.DeleteView):
 	model = Task
 	success_url = reverse_lazy("tasks:index")
 	template_name = "tasks/task_confirm_delete.html"
+
+
+def task_complete(request, pk):
+	task = Task.objects.get(pk=pk)
+	task.done = True
+	task.save()
+	return redirect("tasks:index")
+
+
+def task_undo(request, pk):
+	task = Task.objects.get(pk=pk)
+	task.done = False
+	task.save()
+	return redirect("tasks:index")
+
 
 class TagListView(generic.ListView):
 	model = Tag
