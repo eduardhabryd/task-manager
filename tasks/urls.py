@@ -7,6 +7,8 @@ from tasks import views
 urlpatterns = [
 	path("", views.TaskListView.as_view(), name="index"),
 	path("tags/", views.TagListView.as_view(), name="tags"),
+	path("tags/create/", views.TagCreateView.as_view(), name="create-tag"),
+	path("tags/<int:pk>/update", views.TagUpdateView.as_view(), name="tag-update"),
 	path("tasks/create/", views.TaskCreateView.as_view(), name="create-task"),
 	path("tasks/<int:pk>/update", views.TaskUpdateView.as_view(), name="task-update"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
