@@ -23,7 +23,10 @@ class Task(models.Model):
 	class Meta:
 		verbose_name = "Task"
 		verbose_name_plural = "Tasks"
-		ordering = ["datetime", "done"]
+		ordering = ["done", "datetime"]
+
+	def get_tags(self):
+		return ",".join(list(self.tags.all().values_list("name", flat=True)))
 
 	def __str__(self):
 		return self.content
