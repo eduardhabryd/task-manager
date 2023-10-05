@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+  <h1 class="mt-5 w-50">TODO List
+    <a class="btn btn-primary float-end" href="">Add Task</a>
+  </h1>
+  <hr class="w-50">
+  {% if task_list %}
+    {% for task in task_list %}
+      <div class="row w-100">
+        <div class="col-sm-8">
+          <h5 class="fw-bold">{{ task.content }}
+            {% if task.done %}
+              <span class="badge bg-success ms-3">Done</span>
+            {% else %}
+              <span class="badge bg-danger ms-3">Not Done</span>
+            {% endif %}
+            <a class="btn btn-sm btn-success float-end" href="">Complete</a>
+          </h5>
+          <p class="text-muted">Created: {{ task.datetime }} <span class="text-danger">Dealine: {{ task.deadline }}</span></p>
+          <h6 class="text-muted">Tags: {{ task.tags.all }}</h6>
+        </div>
+      </div>
+      <hr class="w-75">
+    {% endfor %}
+  {% endif %}
+
+{% endblock %}
