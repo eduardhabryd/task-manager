@@ -9,8 +9,10 @@ urlpatterns = [
 	path("tags/", views.TagListView.as_view(), name="tags"),
 	path("tags/create/", views.TagCreateView.as_view(), name="create-tag"),
 	path("tags/<int:pk>/update", views.TagUpdateView.as_view(), name="tag-update"),
+	path("tags/<int:pk>/delete", views.TagDeleteView.as_view(), name="tag-delete"),
 	path("tasks/create/", views.TaskCreateView.as_view(), name="create-task"),
 	path("tasks/<int:pk>/update", views.TaskUpdateView.as_view(), name="task-update"),
+	path("tasks/<int:pk>/delete", views.TaskDeleteView.as_view(), name="task-delete"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 app_name = "tasks"
