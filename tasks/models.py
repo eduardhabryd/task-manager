@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Tag(models.Model):
@@ -15,7 +16,7 @@ class Tag(models.Model):
 
 class Task(models.Model):
 	content = models.CharField(max_length=1024)
-	datetime = models.DateTimeField()
+	created_at = models.DateTimeField(auto_now_add=True)
 	deadline = models.DateTimeField()
 	done = models.BooleanField()
 	tags = models.ManyToManyField(Tag, related_name="tasks")
@@ -23,10 +24,11 @@ class Task(models.Model):
 	class Meta:
 		verbose_name = "Task"
 		verbose_name_plural = "Tasks"
-		ordering = ["done", "datetime"]
+		ordering = ["done", "created_at"]
 
 	def get_tags(self):
-		return ",".join(list(self.tags.all().values_list("name", flat=True)))
+		tags_list = list(self.tags.all().values_list("name", flat=True))
+		return ", ".join(tags_list)
 
 	def __str__(self):
 		return self.content
