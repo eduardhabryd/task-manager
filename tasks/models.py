@@ -14,7 +14,7 @@ class Tag(models.Model):
 
 
 class Task(models.Model):
-	content = models.CharField(max_length=100)
+	content = models.CharField(max_length=1024)
 	datetime = models.DateTimeField()
 	deadline = models.DateTimeField()
 	done = models.BooleanField()
