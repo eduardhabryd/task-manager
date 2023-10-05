@@ -1,13 +1,7 @@
 from django import forms
 
-from tasks.models import Task
+from tasks.models import Task, Tag
 
-
-# content = models.CharField(max_length=1024)
-# 	datetime = models.DateTimeField()
-# 	deadline = models.DateTimeField()
-# 	done = models.BooleanField()
-# 	tags = models.ManyToManyField(Tag, related_name="tasks")
 
 class TaskCreateForm(forms.ModelForm):
 	content = forms.CharField(
@@ -15,11 +9,40 @@ class TaskCreateForm(forms.ModelForm):
 		required=True,
 		widget=forms.TextInput(
 			attrs={
-				"class": "form-control",
+				"class": "form-control mb-3",
+			}
+		)
+	)
+
+	deadline = forms.DateTimeField(
+		required=True,
+		widget=forms.DateTimeInput(
+			attrs={
+				"class": "form-control mb-3",
+				"type": "datetime-local"
+			}
+		)
+	)
+
+	done = forms.BooleanField(
+		required=False,
+		initial=False,
+		widget=forms.CheckboxInput(
+			attrs={
+				"class": "hidden"
+			}
+		)
+	)
+
+	tags = forms.ModelMultipleChoiceField(
+		queryset=Tag.objects.all(),
+		widget=forms.CheckboxSelectMultiple(
+			attrs={
+				"class": "form-check mb-3",
 			}
 		)
 	)
 
 	class Meta:
 		model = Task
-		fields = "__all__"
+		fields = ("content", "deadline", "done", "tags")
