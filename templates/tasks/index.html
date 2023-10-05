@@ -14,10 +14,10 @@
           <h5 class="fw-bold">{{ task.content }}
             {% if task.done %}
               <span class="badge bg-success ms-3">Done</span>
-              <a class="btn btn-sm btn-grey float-end" href="">Undo</a>
+              <a class="btn btn-sm btn-grey float-end" href="{% url 'tasks:task-undo' task.id %}">Undo</a>
             {% else %}
               <span class="badge bg-danger ms-3">Not Done</span>
-              <a class="btn btn-sm btn-success float-end" href="">Complete</a>
+              <a class="btn btn-sm btn-success float-end" href="{% url 'tasks:task-complete' task.id %}">Complete</a>
             {% endif %}
           </h5>
           <p class="text-muted">Created: {{ task.created_at }} <span class="text-danger">Dealine: {{ task.deadline }}</span></p>
